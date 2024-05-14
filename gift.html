@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khyati's Birthday Gift</title>
+    <link rel="stylesheet" href="gift.css">
+</head>
+<body>
+    <div class="gift-content">
+        <h1>Happy Birthday KHYATI 🎂</h1>
+        <div class="circular-image">
+            <img src="pic.png" alt="Birthday Gift" width="300">
+        </div>
+        <div><h2>13<sup>th</sup></h2></div>
+        <div><button id="celebrate-button">CELEBRATE!! 🎉</button></div>
+        <div id="messages">
+            <!-- Messages will be added dynamically here -->
+        </div>
+        <!-- Embedded GIF -->
+        <div class="tenor-gif-embed" data-postid="7987611779846385544" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+            <a href="https://tenor.com/view/birthday-bday-hbd-happy-birthday-happy-bday-gif-7987611779846385544">Birthday Bday Sticker</a> from
+            <a href="https://tenor.com/search/birthday-stickers">Birthday Stickers</a>
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+    <!-- Audio element for the songs -->
+    <audio id="celebration-song" src="happybday.mp3" preload="auto"></audio>
+    <audio id="notification-sound" src="notification.mp3" preload="auto"></audio> <!-- Add notification sound -->
+    
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    const celebrateBtn = document.getElementById('celebrate-button');
+    const messagesContainer = document.getElementById('messages');
+    const notificationSound = document.getElementById('notification-sound');
+
+    celebrateBtn.addEventListener('click', function() {
+        // Play the celebration song
+        playCelebrationSong();
+
+        // Create stars continuously
+        const starInterval = setInterval(createStar, 200);
+
+        // Clear stars after 10 seconds (10000 milliseconds)
+        setTimeout(() => {
+            clearInterval(starInterval);
+            removeAllStars();
+            // Hide the celebrate button
+            celebrateBtn.style.display = 'none';
+            // Show the embedded GIF
+            document.querySelector('.tenor-gif-embed').style.display = 'block';
+            // Show the messages
+            showMessages();
+        }, 10000);
+    });
+
+    const stars = []; // Array to store star elements
+
+    function playCelebrationSong() {
+        const celebrationSong = document.getElementById('celebration-song');
+        celebrationSong.play();
+    }
+
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const xPos = Math.random() * window.innerWidth;
+        const yPos = window.innerHeight; // Start from the bottom of the screen
+        star.style.left = `${xPos}px`;
+        star.style.top = `${yPos}px`;
+        document.body.appendChild(star);
+        stars.push(star); // Add star to array
+
+        // Move the star upwards
+        moveStar(star);
+    }
+
+    function moveStar(star) {
+        let yPos = parseInt(star.style.top);
+        const moveInterval = setInterval(() => {
+            yPos -= 5; // Adjust speed of upward movement
+            star.style.top = `${yPos}px`;
+
+            // Check if the star is out of view
+            if (yPos < -10) {
+                clearInterval(moveInterval);
+                star.remove();
+                stars.splice(stars.indexOf(star), 1); // Remove star from array
+            }
+        }, 50); // Adjust interval for smoother animation
+    }
+
+    function removeAllStars() {
+        // Remove all stars from the DOM and clear the array
+        stars.forEach(star => star.remove());
+        stars.length = 0;
+    }
+
+    function showMessages() {
+        const messages = [
+            "Wishing you joy and happiness on your special day!",
+            "Hope your birthday is as wonderful as you are!",
+            "Wishing you an amazing year ahead! Happy Birthday!",
+            "May all your wishes come true on your special day. Happy Birthday!",
+            "You're not getting older, you're getting better! Happy Birthday!",
+            "Another year older, another year wiser. Happy Birthday!",
+            "Sending you smiles for every moment of your special day. Happy Birthday!",
+            "Here's to a bright, healthy, and exciting future! Happy Birthday!",
+            "When you're feeling lonely, just know I'll be your safe haven, your comforting dark room, where love surrounds you like a warm embrace.",
+            "If tears ever come knocking, my shoulder will be here for you, ready to catch every drop.",
+            "If ever you need a hand, just knock on my door. I'll be there, ready to lend a helping hand.",
+            "In moments of joy or sorrow, my door swings wide, ready to share in every emotion.",
+            "Whenever the weight of the world feels heavy, remember you don't have to carry it alone. Share it with me, and together, we'll lighten the load.",
+            "When the road ahead seems daunting, take my hand, and together we'll navigate the journey with courage and resilience.",
+            "If ever you feel lost in the chaos, know that I'm here to walk beside you, offering comfort and reassurance every step of the way.",
+            "When the trials of life overwhelm you, find solace in knowing that my arms are open wide, ready to embrace you with warmth and understanding.",
+            "When your heart is heavy with sorrow, remember that my love is a soft place to land, a refuge from the pain.",
+            "In the silence of the night, when worries keep you awake, let my presence be a soothing lullaby, easing your troubled mind.",
+            "You are very cute.",
+            "You are very Kind",
+            "Even if the whole world stands against you, my love will stand by your side, unwavering and true.",
+            "If my presence brings a smile to your face, feel free to call on me anytime.",
+        ];
+
+        // Shuffle the messages array
+        messages.sort(() => Math.random() - 0.5);
+
+        let index = 0;
+
+        // Function to display messages one by one with a delay
+        function displayNextMessage() {
+            if (index < messages.length) {
+                const message = messages[index];
+                const messageElem = document.createElement('div');
+                messageElem.classList.add('message');
+                messageElem.textContent = message;
+
+                // Calculate random position for the message within the screen bounds
+                const xPos = Math.max(20, Math.random() * (window.innerWidth - 340)); // Adjust 340 to fit message width and keep a distance of 20px from the right border
+                const yPos = Math.max(20, Math.random() * (window.innerHeight - 100)); // Adjust 100 to fit message height and keep a distance of 20px from the bottom border
+                messageElem.style.left = `${xPos}px`;
+                messageElem.style.top = `${yPos}px`;
+
+                // Apply different background color to the message
+                messageElem.style.backgroundColor = '#25D366'; // Example color
+
+                // Append message to container
+                messagesContainer.appendChild(messageElem);
+
+                // Play notification sound
+                notificationSound.play();
+
+                // Apply animation after a short delay
+                setTimeout(() => {
+                    messageElem.classList.add('visible');
+                }, 500); // Adjust the delay as needed
+
+                // Increment index for the next message
+                index++;
+
+                // Call the next message after the sound finishes
+                notificationSound.onended = function() {
+                    // Revert back to white background color for the message
+                    messageElem.style.backgroundColor = '#ffffff'; // White color
+                    setTimeout(displayNextMessage, 10000); // Adjust delay if needed
+                };
+            }
+        }
+
+        // Start displaying messages
+        displayNextMessage();
+
+        // Display the call button after all messages are displayed
+        setTimeout(displayCallButton, messages.length * 10000 + 10000);
+    }
+
+    // Function to display the call button
+    function displayCallButton() {
+        const callButton = document.createElement('button');
+        callButton.id = 'call-button';
+        callButton.textContent = 'Join the Call 📞';
+        callButton.style.position = 'absolute';
+        callButton.style.top = '50%';
+        callButton.style.left = '50%';
+        callButton.style.transform = 'translate(-50%, -50%)';
+        callButton.style.fontSize = '24px';
+        callButton.style.padding = '15px 30px';
+        callButton.style.backgroundColor = 'red'; // Red background color
+        callButton.style.color = '#fff'; // White font color
+        callButton.style.borderRadius = '7px';
+        callButton.style.cursor = 'pointer';
+        callButton.style.transition = 'background-color 0.3s, color 0.3s';
+        callButton.style.border = 'none'; // No border
+        callButton.style.zIndex = '1000'; // Ensure button appears above other elements
+
+        // Attach click event listener to join the Google Meet
+        callButton.addEventListener('click', function() {
+            window.open('https://meet.google.com/scs-ddab-dbe');
+        });
+
+        // Append the button to the body
+        document.body.appendChild(callButton);
+    }
+});
+
+    </script>
+</body>
+</html>

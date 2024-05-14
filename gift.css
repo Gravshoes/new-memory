@@ -1,0 +1,116 @@
+    body {
+        background-image: url(bg7.jpg);
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        overflow: hidden; /* Hide overflow to prevent scroll bars */
+    }
+
+    h1 {
+        padding: 15px;
+        text-align: center;
+        text-decoration: wavy;
+        font-size: 50px;
+        font-family: cursive;
+        color: aliceblue;
+        font-weight: bolder;
+        background-color: rgba(0, 0, 0, 0.8);
+        border: 10px solid rgba(255, 255, 255, 0.667);
+        border-radius: 20px;
+        max-width: fit-content;
+        position: absolute; /* Position the text */
+        top: 0px;
+        left: 50%; /* Align the text horizontally */
+        transform: translateX(-50%); /* Center the text horizontally */
+    }
+
+    .circular-image {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px; /* Adjust the width as needed */
+        height: 300px; /* Adjust the height as needed */
+        border: 10px solid #000;
+        border-radius: 50%; /* Creates a circular shape */
+        overflow: hidden; /* Hides the overflowing content */
+        text-align: center; /* Center the content horizontally */
+    }
+
+    .circular-image img {
+        display: block;
+        width: 100%; /* Ensure image fills the container */
+        height: 100%; /* Maintain aspect ratio */
+        border-radius: 50%; /* Ensure image is also circular */
+    }
+
+    h2 {
+        font-size: 80px;
+        font-weight: bolder;
+        color: black;
+        position: absolute; /* Position the text */
+        top: 100px; /* Adjust the distance from the top */
+        left: 610px; /* Align the text horizontally */
+        transform: translateX(-50%); /* Center the text horizontally */
+    }
+
+    button {
+        font-size: 30px;
+        padding: 15px 30px;
+        background-color: black;
+        font-weight: bolder;
+        color: white;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px dashed white;
+        position: absolute; /* Position the button */
+        top: 550px; /* Adjust the distance from the top */
+        left: 760px; /* Align the button horizontally */
+        transform: translateX(-50%); /* Center the button horizontally */
+    }
+
+    button:hover {
+        background-color: rgb(58, 56, 56);
+    }
+
+    .star {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: #f6fd35;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        transform: rotate(-45deg); /* Rotate the star to make it point upwards */
+        z-index: 999; /* Ensure stars are above other elements */
+    }
+
+    .tenor-gif-embed {
+        max-width: 150px;
+        margin: 0 auto; /* Center horizontally */
+        display: none; /* Initially hide the GIF */
+        position: absolute; /* Position the button */
+        top: 500px; /* Adjust the distance from the top */
+        left: 0px; /* Align the button horizontally */
+    }
+    .message {
+        position: absolute;
+        font-size: 24px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: dotted 2px green;
+        border-radius: 10px;
+        transition: opacity 0.5s, transform 0.5s;
+        transform: scale(0);
+        opacity: 0;
+        z-index: 1000; /* Ensure messages appear above other elements */
+    }
+    
+    /* Visible class to show the message */
+    .message.visible {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+    }
+    
